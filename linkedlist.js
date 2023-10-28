@@ -1,30 +1,41 @@
 
 class Node {
     constructor(value) {
-        this.value = value;
-        this.next = null;
+        this.value = value; // the value of this Node
+        this.next = null;   // pointer to the next node
     }
 }
 
 class Linkedlist {
-    constructor(){
-        this.head = null;
-        this.size = 0;
+    constructor(){          // values of the Linkedlist when first called
+        this.head = null;   // head of the list
+        this.size = 0;      // number of Nodes in the list
     }
 
     append(value) {
         let node = new Node(value);
         let current;
 
-
-        //if current head is null, then set new node as head
-        if (this.head == null) {
+        if (this.head == null) {    // if head is empty/null, then set new Node as head
             this.head = node;
-        } else {
-            //if current head is not empty, then traverse through list  
-            current = this.head;
-
+        } else {                    // if current head is not empty, then traverse through list
+            current = this.head;    // Node { value: 'node data', next: null }
+            while(current.next) {   // while current.next is a node and not null
+                current = current.next; // sets the current.next node as the current node
+            }
+            current.next = node;    // since current is the last node, current.next is null after the while loop, appends the null current.next as the new node
         }
+        this.size++;
+    }
+
+    prepend(value) {
+        let node = new Node(value);
+        let current;
+
+        // if head is empty/null, then set new Node as head
+        // else traverse through list to find null, and set previous node to next node
+        // or temporarily hold both 
+
     }
 }
 
@@ -32,6 +43,10 @@ let list = new Linkedlist();
 list
 list.append('node data')
 list;
+list.append('second node data')
+list;
+list.preprend('prepended node');
+
 
 // list.append(value)               adds a new node containing value to the end of the list
 // list.prepend(value)              adds a new node containing value to the start of the list
