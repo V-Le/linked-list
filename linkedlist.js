@@ -49,25 +49,47 @@ class Linkedlist {
         this.size++;
     }
 
-    // list.size returns the total number of nodes in the list
-    getSize() {
+    getSize() {  // list.size       returns the total number of nodes in the list
         return this.size;
     }
 
-    // list.head                        returns the first node in the list
-    getHead() {
+    getHead() {  // list.head       returns the first node in the list
         return this.head;
     }
 
+    getTail() {  // list.tail       returns the last node in the list
+        let temp, current;
+        temp = current = this.head;
+
+        while (current) {
+            temp = current;
+            current = current.next;
+        }
+        return temp;
+    }
+
+    getAtIndex(index) {  // list.at(index)      returns the node at the given index
+        let temp, current; temp = current = this.head;
+
+        if (index > this.size || index < 0) return 'Error: "index" out of range.';
+
+        for (let count=0; count <= index; count++) {
+            temp = current;
+            current = current.next;
+        }
+        return temp;
+    }
+    
 }
 
 let list = new Linkedlist(); list;
-list.append('node data'); list;
-list.prepend('prepended node'); list;
+list.append('data1'); list;
+list.append('data2'); list;
+list.prepend('prep node1'); list;
 console.log(list.getHead());
 console.log(list.getSize());
-// list.tail                        returns the last node in the list
-// list.at(index)                   returns the node at the given index
+console.log(list.getTail());
+console.log(list.getAtIndex(1));
 // list.pop                         removes the last element from the list
 // list.contains(value)             returns true if the passed in value is in the list and otherwise returns false.
 // list.find(value)                 returns the index of the node containing value, or null if not found.
