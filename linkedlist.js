@@ -48,21 +48,24 @@ class Linkedlist {
         }
         this.size++;
     }
+
+    // list.size returns the total number of nodes in the list
+    getSize() {
+        return this.size;
+    }
+
+    // list.head                        returns the first node in the list
+    getHead() {
+        return this.head;
+    }
+
 }
 
-// list.size returns the total number of nodes in the list
-
-
-let list = new Linkedlist();
-list
-list.append('node data')
-list;
-list.append('second node data')
-list;
-list.prepend('prepended node');
-console.log(list);
-
-// list.head                        returns the first node in the list
+let list = new Linkedlist(); list;
+list.append('node data'); list;
+list.prepend('prepended node'); list;
+console.log(list.getHead());
+console.log(list.getSize());
 // list.tail                        returns the last node in the list
 // list.at(index)                   returns the node at the given index
 // list.pop                         removes the last element from the list
