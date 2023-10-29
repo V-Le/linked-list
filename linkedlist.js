@@ -11,7 +11,8 @@ class Linkedlist {
         this.head = null;   // head of the list
         this.size = 0;      // number of Nodes in the list
     }
-
+    
+    // list.append(value)               adds a new node containing value to the end of the list
     append(value) {
         let node = new Node(value);
         let current;
@@ -28,29 +29,39 @@ class Linkedlist {
         this.size++;
     }
 
+
+    // For the sake of convenience, we maintain two references prev and cur. When we move along the list we shift these two references,
+    // keeping prev one step before cur. We continue until cur reaches the node before which we need to make an insertion. If cur reaches null,
+    // we don't insert, otherwise we insert a new node between prev and cur.
+
+    // list.prepend(value)              adds a new node containing value to the start of the list
     prepend(value) {
         let node = new Node(value);
-        let current;
+        let temp;
 
-        // if head is empty/null, then set new Node as head
-        // else traverse through list to find null, and set previous node to next node
-        // or temporarily hold both 
-
+        if (this.head == null) {
+            this.head = node;
+        } else {
+            temp = this.head
+            this.head = node;
+            this.head.next = temp;
+        }
+        this.size++;
     }
 }
 
+// list.size
+
+returns the total number of nodes in the list
 let list = new Linkedlist();
 list
 list.append('node data')
 list;
 list.append('second node data')
 list;
-list.preprend('prepended node');
+list.prepend('prepended node');
+console.log(list);
 
-
-// list.append(value)               adds a new node containing value to the end of the list
-// list.prepend(value)              adds a new node containing value to the start of the list
-// list.size                        returns the total number of nodes in the list
 // list.head                        returns the first node in the list
 // list.tail                        returns the last node in the list
 // list.at(index)                   returns the node at the given index
