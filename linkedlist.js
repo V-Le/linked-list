@@ -50,9 +50,9 @@ class Linkedlist {
     }
 }
 
-// list.size
+// list.size returns the total number of nodes in the list
 
-returns the total number of nodes in the list
+
 let list = new Linkedlist();
 list
 list.append('node data')
