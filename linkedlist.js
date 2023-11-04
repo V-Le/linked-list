@@ -84,31 +84,55 @@ class Linkedlist {
     // list.pop                         removes the last element from the list
     removeLast() {
         let temp = this.head;
-        
-        while(temp.next.next != null) {
+    
+        if (this.head.next == null) return "Cannot remove Head Node";
+
+        while(temp.next.next) {
             temp = temp.next;
         }
+
         temp.next = null;
+        this.size--;
         return this.head;
-
-
     }
 
-}
+    // list.contains(value)             returns true if the passed in value is in the list and otherwise returns false.
+    containsValue(value) {
+        let temp = this.head;
+        let containsBool = false;
 
+        while(temp) {
+            if (temp.value == value) {
+                containsBool = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        return containsBool;
+    }
+    
+    // list.find(value)                 returns the index of the node containing value, or null if not found.
+    find(value) {
+        let temp = this.head;
+
+        while (temp != null) {
+            return;
+        }
+    }
+}
 
 
 let list = new Linkedlist(); list;
 list.append('data1'); list;
 list.append('data2'); list;
+list.append('data3'); list;
 list.prepend('prep node1'); list;
 console.log(list.getHead());
 console.log(list.getSize());
 console.log(list.getTail());
 console.log(list.getAtIndex(0));
 console.log(list.removeLast())
-// list.contains(value)             returns true if the passed in value is in the list and otherwise returns false.
-// list.find(value)                 returns the index of the node containing value, or null if not found.
+console.log(list.containsValue('data3'))
 // list.toString                    represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
 // 
 // Extra credit
