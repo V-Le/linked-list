@@ -58,8 +58,8 @@ class Linkedlist {
     }
 
     getTail() {  // list.tail       returns the last node in the list
-        let temp, current;
-        temp = current = this.head;
+        let temp = this.head;
+        let current = this.head; 
 
         while (current) {
             temp = current;
@@ -69,8 +69,9 @@ class Linkedlist {
     }
 
     getAtIndex(index) {  // list.at(index)      returns the node at the given index
-        let temp, current; temp = current = this.head;
-
+        let temp = this.head;
+        let current = this.head; 
+        
         if (index > this.size || index < 0) return 'Error: "index" out of range.';
 
         for (let count=0; count <= index; count++) {
@@ -80,7 +81,22 @@ class Linkedlist {
         return temp;
     }
     
+    // list.pop                         removes the last element from the list
+    removeLast() {
+        let temp = this.head;
+        
+        while(temp.next.next != null) {
+            temp = temp.next;
+        }
+        temp.next = null;
+        return this.head;
+
+
+    }
+
 }
+
+
 
 let list = new Linkedlist(); list;
 list.append('data1'); list;
@@ -89,8 +105,8 @@ list.prepend('prep node1'); list;
 console.log(list.getHead());
 console.log(list.getSize());
 console.log(list.getTail());
-console.log(list.getAtIndex(1));
-// list.pop                         removes the last element from the list
+console.log(list.getAtIndex(0));
+console.log(list.removeLast())
 // list.contains(value)             returns true if the passed in value is in the list and otherwise returns false.
 // list.find(value)                 returns the index of the node containing value, or null if not found.
 // list.toString                    represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
