@@ -112,7 +112,7 @@ class Linkedlist {
     }
     
     // list.find(value)                 returns the index of the node containing value, or null if not found.
-    find(value) {
+    findIndex(value) {
         let temp = this.head;
         let valueIndex = 'not found';
         let count = 0;
@@ -127,6 +127,23 @@ class Linkedlist {
         }
         return "Node index: " + valueIndex;
     }
+    
+    // list.toString                    represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
+    toString() {
+        let temp = this.head;
+        let listString = '';
+
+        while (temp != null) {
+            listString = listString.concat(' -> ', temp.value);
+            temp = temp.next;
+            if (temp == null) {
+                listString = listString.concat(' -> ', temp);
+            }
+        }
+        return listString;
+    }
+
+
 }
 
 
@@ -141,8 +158,8 @@ console.log(list.getTail());
 console.log(list.getAtIndex(0));
 console.log(list.removeLast())
 console.log(list.containsValue('data1'))
-console.log(list.find('data2'))
-// list.toString                    represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
+console.log(list.findIndex('data2'))
+console.log(list.toString());
 // 
 // Extra credit
 // list.insertAt(value, index)      that inserts a new node with the provided value at the given index.
