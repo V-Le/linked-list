@@ -87,7 +87,7 @@ class Linkedlist {
     
         if (this.head.next == null) return "Cannot remove Head Node";
 
-        while(temp.next.next) {
+        while(temp.next.next != null) {
             temp = temp.next;
         }
 
@@ -101,7 +101,7 @@ class Linkedlist {
         let temp = this.head;
         let containsBool = false;
 
-        while(temp) {
+        while(temp != null) {
             if (temp.value == value) {
                 containsBool = true;
                 break;
@@ -114,10 +114,18 @@ class Linkedlist {
     // list.find(value)                 returns the index of the node containing value, or null if not found.
     find(value) {
         let temp = this.head;
+        let valueIndex = 'not found';
+        let count = 0;
 
         while (temp != null) {
-            return;
+            if(temp.value == value) {
+                valueIndex = count;
+                break;
+            };
+            temp = temp.next;
+            count++;
         }
+        return "Node index: " + valueIndex;
     }
 }
 
@@ -133,6 +141,7 @@ console.log(list.getTail());
 console.log(list.getAtIndex(0));
 console.log(list.removeLast())
 console.log(list.containsValue('data1'))
+console.log(list.find('data2'))
 // list.toString                    represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
 // 
 // Extra credit
