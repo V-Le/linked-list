@@ -132,7 +132,7 @@ console.log(list.getSize());
 console.log(list.getTail());
 console.log(list.getAtIndex(0));
 console.log(list.removeLast())
-console.log(list.containsValue('data3'))
+console.log(list.containsValue('data1'))
 // list.toString                    represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
 // 
 // Extra credit
