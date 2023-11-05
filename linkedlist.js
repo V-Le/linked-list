@@ -143,6 +143,27 @@ class Linkedlist {
         return listString;
     }
 
+    // list.insertAt(value, index)      that inserts a new node with the provided value at the given index.
+    insertAt(value, index) {
+        //            0        PREVIOUS    CURRENT      NEXT
+        //      [PREP1 NODE] -> [DATA1] -> [DATA 2]-> [DATA 3] -> NULL
+        //                       head       delete      tail
+
+        //if index is greater than > list size || less than 0, return "Index is not in range"
+        //if this.head is null, this.head = value
+
+        let current = this.head;
+        let previous = current;
+        let next = current.next;
+        let count = 0;
+
+        while (current != null) {
+            previous = current;
+            current = current.next;
+            return;
+        }
+
+    }
 
 }
 
@@ -151,7 +172,8 @@ let list = new Linkedlist(); list;
 list.append('data1'); list;
 list.append('data2'); list;
 list.append('data3'); list;
-list.prepend('prep node1'); list;
+list.append('data4'); list;
+list.prepend('prep1'); list;
 console.log(list.getHead());
 console.log(list.getSize());
 console.log(list.getTail());
@@ -160,8 +182,8 @@ console.log(list.removeLast())
 console.log(list.containsValue('data1'))
 console.log(list.findIndex('data2'))
 console.log(list.toString());
-// 
+console.log(list.insertAt('insert1', 2));
+
 // Extra credit
-// list.insertAt(value, index)      that inserts a new node with the provided value at the given index.
 // list.removeAt(index)             that removes the node at the given index.
 // Extra Credit Tip: When you insert or remove a node, consider how it will affect the existing nodes. Some of the nodes will need their nextNode link updated.
