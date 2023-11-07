@@ -140,31 +140,58 @@ class Linkedlist {
                 listString = listString.concat(' -> ', temp);
             }
         }
-        return listString;
+        return 'toString: ' + listString;
     }
 
     // list.insertAt(value, index)      that inserts a new node with the provided value at the given index.
     insertAt(value, index) {
         //            0        PREVIOUS    CURRENT      NEXT
         //      [PREP1 NODE] -> [DATA1] -> [DATA 2]-> [DATA 3] -> NULL
-        //                       head       delete      tail
+        //                       head       insert      tail
 
         //if index is greater than > list size || less than 0, return "Index is not in range"
+        if (index > this.size || index < 0) {
+            return 'Index is not in range';
+        }
         //if this.head is null, this.head = value
 
-        let current = this.head;
-        let previous = current;
-        let next = current.next;
-        let count = 0;
+        let node = new Node(value)
 
-        while (current != null) {
+        let current = this.head;
+        let previous;
+
+        for (let count=0; count <= index; count++) {
             previous = current;
             current = current.next;
-            return;
+            if (count == index) {
+                node.next = current;
+                previous.next = node;
+            }
         }
-
+        return this.head;
     }
+    
+    // // list.insertAt(value, index)      that inserts a new node with the provided value at the given index.
+    // insertAt(value, index) {
+    //     //            0        PREVIOUS    CURRENT      NEXT
+    //     //      [PREP1 NODE] -> [DATA1] -> [DATA 2]-> [DATA 3] -> NULL
+    //     //                       head       delete      tail
 
+    //     //if index is greater than > list size || less than 0, return "Index is not in range"
+    //     //if this.head is null, this.head = value
+
+    //     let current = this.head;
+    //     let previous = current;
+    //     let next = current.next;
+    //     let count = 0;
+
+    //     while (current != null) {
+    //         previous = current;
+    //         current = current.next;
+    //         return;
+    //     }
+
+    // }
 }
 
 
@@ -175,14 +202,14 @@ list.append('data3'); list;
 list.append('data4'); list;
 list.prepend('prep1'); list;
 console.log(list.getHead());
-console.log(list.getSize());
 console.log(list.getTail());
 console.log(list.getAtIndex(0));
 console.log(list.removeLast())
 console.log(list.containsValue('data1'))
 console.log(list.findIndex('data2'))
 console.log(list.toString());
-console.log(list.insertAt('insert1', 2));
+console.log(list.getSize());
+console.log(list.insertAt('insert1', 3));
 
 // Extra credit
 // list.removeAt(index)             that removes the node at the given index.
