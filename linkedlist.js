@@ -153,19 +153,22 @@ class Linkedlist {
         if (index > this.size || index < 0) {
             return 'Index is not in range';
         }
-        //if this.head is null, this.head = value
+        //if this.head is null, this.head = value'=
 
         let node = new Node(value)
 
         let current = this.head;
+        let temp;
         let previous;
 
         for (let count=0; count <= index; count++) {
             previous = current;
             current = current.next;
             if (count == index) {
-                node.next = current;
-                previous.next = node;
+                temp = previous;
+                previous = node;
+                node.next = previous;
+                previous.next = current;
             }
         }
         return this.head;
@@ -195,6 +198,9 @@ class Linkedlist {
 }
 
 
+//  prev - 3
+//  curr - 4
+
 let list = new Linkedlist(); list;
 list.append('data1'); list;
 list.append('data2'); list;
@@ -209,7 +215,7 @@ console.log(list.containsValue('data1'))
 console.log(list.findIndex('data2'))
 console.log(list.toString());
 console.log(list.getSize());
-console.log(list.insertAt('insert1', 3));
+console.log(list.insertAt('insert1', 0));
 
 // Extra credit
 // list.removeAt(index)             that removes the node at the given index.
