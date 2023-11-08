@@ -148,7 +148,7 @@ class Linkedlist {
         
         let node = new Node(value)
         let current = this.head;
-        let previous;
+        let previous = this.head;
 
         if (index > this.size || index < 0) return 'Index is not in range';
 
@@ -160,11 +160,13 @@ class Linkedlist {
                     if (count == index) {
                         node.next = current;
                         previous.next = node;
+                    } else {    
+                        previous = current;
+                        current = current.next;
                     }
-                    previous = current;
-                    current = current.next;
                 }
             }
+            this.size++;
             return this.head;
         }
         
@@ -173,7 +175,24 @@ class Linkedlist {
         //                       head       insert      tail
     // list.removeAt(index)             that removes the node at the given index.
     removeAt(index) {
-        
+        let current = this.head;
+        let previous = this.head;
+
+        if (index >= this.size || index < 0) return 'Index is out of range';
+
+        if (index == 0) {
+            this.head = this.head.next;
+        } else {
+            for (let count=0; count <= index; count++) {
+                if (count == index) {
+                    previous.next = current.next;
+                }
+                previous = current;
+                current = current.next;
+            }
+        }
+        this.size--;
+        return this.head;
     }
 
 }
@@ -187,12 +206,11 @@ list.prepend('prep1'); list;
 console.log(list.getHead());
 console.log(list.getTail());
 console.log(list.getAtIndex(0));
-console.log(list.removeLast())
+list.removeLast(); list;
 console.log(list.containsValue('data1'))
 console.log(list.findIndex('data2'))
+console.log(list.insertAt('insert1', 1));
+console.log(list.getSize());
+console.log(list.removeAt(0)); 
 console.log(list.toString());
 console.log(list.getSize());
-console.log(list.insertAt('insert1', 3));
-
-// Extra credit
-// Extra Credit Tip: When you insert or remove a node, consider how it will affect the existing nodes. Some of the nodes will need their nextNode link updated.
