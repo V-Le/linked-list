@@ -194,7 +194,6 @@ class Linkedlist {
         this.size--;
         return this.head;
     }
-
 }
 
 let list = new Linkedlist(); list;
@@ -213,4 +212,5 @@ console.log(list.insertAt('insert1', 1));
 console.log(list.getSize());
 console.log(list.removeAt(0)); 
 console.log(list.toString());
+list;
 console.log(list.getSize());
