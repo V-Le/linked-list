@@ -145,61 +145,38 @@ class Linkedlist {
 
     // list.insertAt(value, index)      that inserts a new node with the provided value at the given index.
     insertAt(value, index) {
+        
+        let node = new Node(value)
+        let current = this.head;
+        let previous;
+
+        if (index > this.size || index < 0) return 'Index is not in range';
+
+        if (index == 0) {
+            node.next = this.head
+            this.head = node;  
+        }   else {
+                for (let count=0; count <= index; count++) {
+                    if (count == index) {
+                        node.next = current;
+                        previous.next = node;
+                    }
+                    previous = current;
+                    current = current.next;
+                }
+            }
+            return this.head;
+        }
+        
         //            0        PREVIOUS    CURRENT      NEXT
         //      [PREP1 NODE] -> [DATA1] -> [DATA 2]-> [DATA 3] -> NULL
         //                       head       insert      tail
-
-        //if index is greater than > list size || less than 0, return "Index is not in range"
-        if (index > this.size || index < 0) {
-            return 'Index is not in range';
-        }
-        //if this.head is null, this.head = value'=
-
-        let node = new Node(value)
-
-        let current = this.head;
-        let temp;
-        let previous;
-
-        for (let count=0; count <= index; count++) {
-            previous = current;
-            current = current.next;
-            if (count == index) {
-                temp = previous;
-                previous = node;
-                node.next = previous;
-                previous.next = current;
-            }
-        }
-        return this.head;
+    // list.removeAt(index)             that removes the node at the given index.
+    removeAt(index) {
+        
     }
-    
-    // // list.insertAt(value, index)      that inserts a new node with the provided value at the given index.
-    // insertAt(value, index) {
-    //     //            0        PREVIOUS    CURRENT      NEXT
-    //     //      [PREP1 NODE] -> [DATA1] -> [DATA 2]-> [DATA 3] -> NULL
-    //     //                       head       delete      tail
 
-    //     //if index is greater than > list size || less than 0, return "Index is not in range"
-    //     //if this.head is null, this.head = value
-
-    //     let current = this.head;
-    //     let previous = current;
-    //     let next = current.next;
-    //     let count = 0;
-
-    //     while (current != null) {
-    //         previous = current;
-    //         current = current.next;
-    //         return;
-    //     }
-
-    // }
 }
-
-
-//  prev - 3
-//  curr - 4
 
 let list = new Linkedlist(); list;
 list.append('data1'); list;
@@ -215,8 +192,7 @@ console.log(list.containsValue('data1'))
 console.log(list.findIndex('data2'))
 console.log(list.toString());
 console.log(list.getSize());
-console.log(list.insertAt('insert1', 0));
+console.log(list.insertAt('insert1', 3));
 
 // Extra credit
-// list.removeAt(index)             that removes the node at the given index.
 // Extra Credit Tip: When you insert or remove a node, consider how it will affect the existing nodes. Some of the nodes will need their nextNode link updated.
