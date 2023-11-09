@@ -1,4 +1,3 @@
-
 class Node {
     constructor(value) {
         this.value = value; // the value of this Node
@@ -14,36 +13,21 @@ class Linkedlist {
     
     // list.append(value)               adds a new node containing value to the end of the list
     append(value) {
-        let node = new Node(value);
-        let current;
-
-        if (this.head == null) {    // if head is empty/null, then set new Node as head
-            this.head = node;
-        } else {                    // if current head is not empty, then traverse through list
-            current = this.head;    // Node { value: 'node data', next: null }
-            while(current.next) {   // while current.next is a node and not null
-                current = current.next; // sets the current.next node as the current node
-            }
-            current.next = node;    // since current is the last node, current.next is null after the while loop, appends the null current.next as the new node
+        if (this.head == null) this.head = new Node(value);
+        else {                    // if temp head is not empty, then traverse through list
+            let temp = this.head;    // Node { value: 'node data', next: null }
+            while(temp.next) temp = temp.next;  // while temp.next is a node and not null
+            temp.next = new Node(value);   // since temp is the last node, temp.next is null after the while loop, appends the null temp.next as the new node
         }
         this.size++;
     }
 
-
-    // For the sake of convenience, we maintain two references prev and cur. When we move along the list we shift these two references,
-    // keeping prev one step before cur. We continue until cur reaches the node before which we need to make an insertion. If cur reaches null,
-    // we don't insert, otherwise we insert a new node between prev and cur.
-
     // list.prepend(value)              adds a new node containing value to the start of the list
     prepend(value) {
-        let node = new Node(value);
-        let temp;
-
-        if (this.head == null) {
-            this.head = node;
-        } else {
-            temp = this.head
-            this.head = node;
+        if (this.head == null) this.head = new Node(value);
+        else {
+            let temp = this.head
+            this.head = new Node(value);
             this.head.next = temp;
         }
         this.size++;
@@ -59,12 +43,8 @@ class Linkedlist {
 
     getTail() {  // list.tail       returns the last node in the list
         let temp = this.head;
-        let current = this.head; 
 
-        while (current) {
-            temp = current;
-            current = current.next;
-        }
+        while (temp.next) temp = temp.next;
         return temp;
     }
 
