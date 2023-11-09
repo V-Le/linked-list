@@ -79,16 +79,12 @@ class Linkedlist {
     // list.contains(value)             returns true if the passed in value is in the list and otherwise returns false.
     containsValue(value) {
         let temp = this.head;
-        let containsBool = false;
 
         while(temp != null) {
-            if (temp.value == value) {
-                containsBool = true;
-                break;
-            }
+            if (temp.value == value) return true;
             temp = temp.next;
         }
-        return containsBool;
+        return false;
     }
     
     // list.find(value)                 returns the index of the node containing value, or null if not found.
