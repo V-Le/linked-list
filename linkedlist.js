@@ -14,22 +14,22 @@ class Linkedlist {
     // list.append(value)               adds a new node containing value to the end of the list
     append(value) {
         if (this.head == null) this.head = new Node(value);
-        else {                    // if temp head is not empty, then traverse through list
-            let temp = this.head;    // Node { value: 'node data', next: null }
-            while(temp.next) temp = temp.next;  // while temp.next is a node and not null
-            temp.next = new Node(value);   // since temp is the last node, temp.next is null after the while loop, appends the null temp.next as the new node
-        }
+            else {                    // if temp head is not empty, then traverse through list
+                let temp = this.head;    // Node { value: 'node data', next: null }
+                while(temp.next) temp = temp.next;  // while temp.next is a node and not null
+                temp.next = new Node(value);   // since temp is the last node, temp.next is null after the while loop, appends the null temp.next as the new node
+            }
         this.size++;
     }
 
     // list.prepend(value)              adds a new node containing value to the start of the list
     prepend(value) {
         if (this.head == null) this.head = new Node(value);
-        else {
-            let temp = this.head
-            this.head = new Node(value);
-            this.head.next = temp;
-        }
+            else {
+                let temp = this.head
+                this.head = new Node(value);
+                this.head.next = temp;
+            }
         this.size++;
     }
 
@@ -108,39 +108,34 @@ class Linkedlist {
         while (temp != null) {
             listString = listString.concat(' -> ', temp.value);
             temp = temp.next;
-            if (temp == null) {
-                listString = listString.concat(' -> ', temp);
-            }
+            if (temp == null) listString = listString.concat(' -> ', temp);
         }
         return 'toString: ' + listString;
     }
 
     // list.insertAt(value, index)      that inserts a new node with the provided value at the given index.
     insertAt(value, index) {
-        
         let node = new Node(value)
         let current = this.head;
-        let previous = this.head;
+        let previous = null;
 
         if (index > this.size || index < 0) return 'Index is not in range';
 
-        if (index == 0) {
-            node.next = this.head
-            this.head = node;  
-        }   else {
+        if (index == 0) this.prepend(value);  
+            else {
                 for (let count=0; count <= index; count++) {
                     if (count == index) {
                         node.next = current;
                         previous.next = node;
+                        this.size++;
                     } else {    
                         previous = current;
                         current = current.next;
                     }
                 }
             }
-            this.size++;
-            return this.head;
-        }
+        return this.head;
+    }
         
         //            0        PREVIOUS    CURRENT      NEXT
         //      [PREP1 NODE] -> [DATA1] -> [DATA 2]-> [DATA 3] -> NULL
@@ -148,8 +143,9 @@ class Linkedlist {
     // list.removeAt(index)             that removes the node at the given index.
     removeAt(index) {
         let current = this.head;
-        let previous = this.head;
+        let previous = null;
 
+        if (this.head == null) return 'List is empty';
         if (index >= this.size || index < 0) return 'Index is out of range';
 
         if (index == 0) {
@@ -158,9 +154,10 @@ class Linkedlist {
             for (let count=0; count <= index; count++) {
                 if (count == index) {
                     previous.next = current.next;
+                } else { 
+                    previous = current;
+                    current = current.next;
                 }
-                previous = current;
-                current = current.next;
             }
         }
         this.size--;
@@ -180,7 +177,7 @@ console.log(list.getAtIndex(0));
 list.removeLast(); list;
 console.log(list.containsValue('data1'))
 console.log(list.findIndex('data2'))
-console.log(list.insertAt('insert1', 1));
+console.log(list.insertAt('insert1', 0));
 console.log(list.getSize());
 console.log(list.removeAt(0)); 
 console.log(list.toString());
