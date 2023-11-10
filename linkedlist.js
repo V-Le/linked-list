@@ -90,18 +90,14 @@ class Linkedlist {
     // list.find(value)                 returns the index of the node containing value, or null if not found.
     findIndex(value) {
         let temp = this.head;
-        let valueIndex = 'not found';
-        let count = 0;
+        let index = 0;
 
         while (temp != null) {
-            if(temp.value == value) {
-                valueIndex = count;
-                break;
-            };
+            if(temp.value == value) return index;
             temp = temp.next;
-            count++;
+            index++;
         }
-        return "Node index: " + valueIndex;
+        return null;
     }
     
     // list.toString                    represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
