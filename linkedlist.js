@@ -1,18 +1,12 @@
-class Node {
-    constructor(value) {
-        this.value = value; // the value of this Node
-        this.next = null;   // pointer to the next node
-    }
-}
+import Node from "./linkedlistNode.js"
 
-class Linkedlist {
+export default class Linkedlist {
     constructor(){          // values of the Linkedlist when first called
         this.head = null;   // head of the list
         this.size = 0;      // number of Nodes in the list
     }
     
-    // list.append(value)               adds a new node containing value to the end of the list
-    append(value) {
+    append(value) {    //adds a new node containing value to the end of the list
         if (this.head == null) this.head = new Node(value);
             else {                    // if temp head is not empty, then traverse through list
                 let temp = this.head;    // Node { value: 'node data', next: null }
@@ -22,8 +16,7 @@ class Linkedlist {
         this.size++;
     }
 
-    // list.prepend(value)              adds a new node containing value to the start of the list
-    prepend(value) {
+    prepend(value) {    //adds a new node containing value to the start of the list
         if (this.head == null) this.head = new Node(value);
             else {
                 let temp = this.head
@@ -33,22 +26,22 @@ class Linkedlist {
         this.size++;
     }
 
-    getSize() {  // list.size       returns the total number of nodes in the list
+    getSize() {    //returns the total number of nodes in the list
         return this.size;
     }
 
-    getHead() {  // list.head       returns the first node in the list
+    getHead() {    //returns the first node in the list
         return this.head;
     }
 
-    getTail() {  // list.tail       returns the last node in the list
+    getTail() {    //returns the last node in the list
         let temp = this.head;
 
         while (temp.next) temp = temp.next;
         return temp;
     }
 
-    getAtIndex(index) {  // list.at(index)      returns the node at the given index
+    getAtIndex(index) {    //returns the node at the given index
         let temp = this.head;
         let current = this.head; 
         
@@ -61,8 +54,8 @@ class Linkedlist {
         return temp;
     }
     
-    // list.pop                         removes the last element from the list
-    removeLast() {
+
+    removeLast() {    //removes the last element from the list
         let temp = this.head;
     
         if (this.head.next == null) return "Cannot remove Head Node";
@@ -76,8 +69,7 @@ class Linkedlist {
         return this.head;
     }
 
-    // list.contains(value)             returns true if the passed in value is in the list and otherwise returns false.
-    containsValue(value) {
+    containsValue(value) {    //returns true if the passed in value is in the list and otherwise returns false.
         let temp = this.head;
 
         while(temp != null) {
@@ -87,8 +79,7 @@ class Linkedlist {
         return false;
     }
     
-    // list.find(value)                 returns the index of the node containing value, or null if not found.
-    findIndex(value) {
+    findIndex(value) {    //returns the index of the node containing value, or null if not found.
         let temp = this.head;
         let index = 0;
 
@@ -100,8 +91,7 @@ class Linkedlist {
         return null;
     }
     
-    // list.toString                    represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
-    toString() {
+    toString() {    ///represent your LinkedList objects as strings, format should be: ( value ) -> ( value ) -> ( value ) -> null
         let temp = this.head;
         let listString = '';
 
@@ -113,8 +103,7 @@ class Linkedlist {
         return 'toString: ' + listString;
     }
 
-    // list.insertAt(value, index)      that inserts a new node with the provided value at the given index.
-    insertAt(value, index) {
+    insertAt(value, index) {    //inserts a new node with the provided value at the given index.
         let node = new Node(value)
         let current = this.head;
         let previous = null;
@@ -137,11 +126,7 @@ class Linkedlist {
         return this.head;
     }
         
-        //            0        PREVIOUS    CURRENT      NEXT
-        //      [PREP1 NODE] -> [DATA1] -> [DATA 2]-> [DATA 3] -> NULL
-        //                       head       insert      tail
-    // list.removeAt(index)             that removes the node at the given index.
-    removeAt(index) {
+    removeAt(index) {    //removes the node at the given index.
         let current = this.head;
         let previous = null;
 
@@ -164,22 +149,3 @@ class Linkedlist {
         return this.head;
     }
 }
-
-let list = new Linkedlist(); list;
-list.append('data1'); list;
-list.append('data2'); list;
-list.append('data3'); list;
-list.append('data4'); list;
-list.prepend('prep1'); list;
-console.log(list.getHead());
-console.log(list.getTail());
-console.log(list.getAtIndex(0));
-list.removeLast(); list;
-console.log(list.containsValue('data1'))
-console.log(list.findIndex('data2'))
-console.log(list.insertAt('insert1', 0));
-console.log(list.getSize());
-console.log(list.removeAt(0)); 
-console.log(list.toString());
-list;
-console.log(list.getSize());
